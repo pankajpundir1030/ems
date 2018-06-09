@@ -25,7 +25,7 @@ node {
 	        }
         }	
       	stage ('Deploy') {
-	def pid="ps -fe | grep tomcat"
+	def pid=`ps -fe | grep tomcat`
   	if (pid !=null)
   	{
     		"echo 'Tomcat is already running'"
@@ -33,7 +33,7 @@ node {
 		sh "cp C:/Users/abc/.m2/repository/com/aws/codestar/projecttemplates/HelloWorld/1.0/HelloWorld-1.0.war D:/Software/apache-tomcat-8.5.31/webapps"
 		sh "D:/Software/apache-tomcat-8.5.31/bin/startup.sh"
   	}else
-		"echo 'Tomcat is already shutdown'"
+		echo "Tomcat is already shutdown"
 		
 		sh "cp C:/Users/abc/.m2/repository/com/aws/codestar/projecttemplates/HelloWorld/1.0/HelloWorld-1.0.war D:/Software/apache-tomcat-8.5.31/webapps"
 		sh "D:/Software/apache-tomcat-8.5.31/bin/startup.sh"
