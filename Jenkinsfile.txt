@@ -31,12 +31,12 @@ node {
     		echo "Tomcat is already running"
 		sh "D:/Software/apache-tomcat-8.5.31/bin/shutdown.sh"
 		sh "cp C:/Users/abc/.m2/repository/com/aws/codestar/projecttemplates/HelloWorld/1.0/HelloWorld-1.0.war D:/Software/apache-tomcat-8.5.31/webapps"
-		sh "D:/Software/apache-tomcat-8.5.31/bin/startup.sh"
+		sh "D:/Software/apache-tomcat-8.5.31/bin/startup"
   	}else
 		echo "Tomcat is already shutdown"
 		
 		sh "cp C:/Users/abc/.m2/repository/com/aws/codestar/projecttemplates/HelloWorld/1.0/HelloWorld-1.0.war D:/Software/apache-tomcat-8.5.31/webapps"
-		sh "D:/Software/apache-tomcat-8.5.31/bin/startup.sh"
+		sh "D:/Software/apache-tomcat-8.5.31/bin/startup"
 	
 	}
     } catch (err) {
