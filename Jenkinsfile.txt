@@ -8,7 +8,7 @@ node {
         }
 	
         stage ('Build') {
-        	 sh "mvn clean install"
+        	 sh "clean install"
 		 "echo 'shell scripts to build project...'"
         }
         stage ('Tests') {
