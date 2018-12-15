@@ -10,7 +10,7 @@ node {
         stage ('Build') {
 	
 	def mvnHome=tool name: 'Apache Maven 3.5.4', type: 'maven'
-        	 sh "mvn clean install"
+        	 sh "$mvnHome clean install"
 		 "echo 'shell scripts to build project...'"
         }
         stage ('Tests') {
