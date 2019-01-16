@@ -46,13 +46,8 @@ node {
 
 {
 
-steps
-
-{
-
 sh 'ansible-playbook /Root/test/deploy.yaml'
 
-}
 }
 	
 	
