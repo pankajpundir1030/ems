@@ -26,13 +26,10 @@ sh 'ansible-playbook /Root/test/deploy.yaml'
 }
 }
 
-	catch (e) {
-        echo 'Err: Incremental Build failed with Error: ' + e.toString()
-        echo '     Trying to build with a clean Workspace'
-        removeOldBuildEnvironment()
-        throw e
-    } finally {
-        cleanupEnvironment()
-    }
+
   
+ catch (err) {
+        currentBuild.result = 'FAILED'
+        throw err
+}
 }
