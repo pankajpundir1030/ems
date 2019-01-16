@@ -42,14 +42,18 @@ node {
 	
 	//}
 	
-	steps
+	stage('Deploying on Sohum')
+
+{
+
+steps
 
 {
 
 sh 'ansible-playbook /Root/test/deploy.yaml'
 
 }
-	
+}
 	
 	
     } catch (err) {
