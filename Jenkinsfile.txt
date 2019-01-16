@@ -14,15 +14,4 @@ node {
 		 "echo 'shell scripts to build project...'"
         }
    
-	stage('Deploying on Sohum')
-{
-
-steps
-
-{
-
-sh 'ansible-playbook /Root/test/deploy.yaml'
-
-}
-}
 }
