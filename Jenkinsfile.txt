@@ -28,22 +28,8 @@ node {
 	   //     }
        // }	
       	stage ('Deploy') {
-	//def pid="ps -fe | grep tomcat"
-  	//if (pid !=null)
-  	//{
-    	//	echo "Tomcat is already running"
-	//	sh "/root/tomcat2/bin/shutdown.sh"
-	//	sh "cp /var/lib/jenkins/.m2/repository/com/aws/codestar/projecttemplates/HelloWorld/1.0/HelloWorld-1.0.war /root/tomcat2/webapps"
-	//	sh "/root/tomcat2/bin/startup.sh"
-  //	}else
-	//	echo "Tomcat is already shutdown"
-		
-	//	sh "/var/lib/jenkins/.m2/repository/com/aws/codestar/projecttemplates/HelloWorld/1.0/HelloWorld-1.0.war /root/tomcat2/webapps"
-	//	sh "/root/tomcat2/bin/startup.sh"
-	
-	//}
-    } 
-    catch ('err') {
+	} 
+    catch (err) {
         currentBuild.result = 'FAILED'
         throw err
     }
