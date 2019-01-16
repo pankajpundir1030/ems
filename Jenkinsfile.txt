@@ -1,26 +1,48 @@
- pipeline {
- 
- deleteDir()
-    agent any
-    
-    stage ('Clone') {
+node {
+ 	 //Clean workspace before doing anything
+    deleteDir()
+
+    try {
+        stage ('Clone') {
         	checkout scm
         }
-    
-
-    stages {
-        stage('Build') {
-          
+	
+        stage ('Build') {
 	
 	def mvnHome=tool name: 'Apache Maven 3.5.4', type: 'maven'
         	 sh "${mvnHome}/bin/mvn clean install"
 		 "echo 'shell scripts to build project...'"
         }
-      }
-        stage('Deploy') {
-            steps {
-                sh 'ansible-playbook /Root/test/deploy.yaml'
-            }
-        }
+     //   stage ('Tests') {
+	  //      parallel 'static': {
+	//             "echo 'shell scripts to run static tests...'"
+	    //    },
+	     //   'unit': {
+		//     sh "mvn test"
+	          //   "echo 'shell scripts to run unit tests...'"
+	      //  },
+	      //  'integration': {
+	//	     sh "mvn verify"
+	 //            "echo 'shell scripts to run integration tests...'"
+	   //     }
+       // }	
+      	stage ('Deploy') {
+	def pid="ps -fe | grep tomcat"
+  	if (pid !=null)
+  	{
+    		echo "Tomcat is already running"
+		sh "/root/tomcat2/bin/shutdown.sh"
+		sh "cp /var/lib/jenkins/.m2/repository/com/aws/codestar/projecttemplates/HelloWorld/1.0/HelloWorld-1.0.war /root/tomcat2/webapps"
+		sh "/root/tomcat2/bin/startup.sh"
+  	}else
+		echo "Tomcat is already shutdown"
+		
+		sh "/var/lib/jenkins/.m2/repository/com/aws/codestar/projecttemplates/HelloWorld/1.0/HelloWorld-1.0.war /root/tomcat2/webapps"
+		sh "/root/tomcat2/bin/startup.sh"
+	
+	}
+    } catch (err) {
+        currentBuild.result = 'FAILED'
+        throw err
     }
 }
