@@ -26,7 +26,7 @@ node {
 	 //            "echo 'shell scripts to run integration tests...'"
 	   //     }
        // }	
-      	stage ('Deploy') {
+      	//stage ('Deploy') {
 	//def pid="ps -fe | grep tomcat"
   	//if (pid !=null)
   	//{
@@ -41,6 +41,17 @@ node {
 	//	sh "/root/tomcat2/bin/startup.sh"
 	
 	//}
+	
+	steps
+
+{
+
+sh 'ansible-playbook /Root/test/deploy.yaml'
+
+}
+	
+	
+	
     } catch (err) {
         currentBuild.result = 'FAILED'
         throw err
