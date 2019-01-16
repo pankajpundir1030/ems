@@ -29,8 +29,7 @@ node {
        // }	
       	stage ('Deploy') {
 	} 
-    catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
-    }
+   catch(err) {
+         println("Catching the exception");
+      }
 }
