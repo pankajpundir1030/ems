@@ -27,7 +27,7 @@ node {
 	 //            "echo 'shell scripts to run integration tests...'"
 	   //     }
        // }	
-      	//stage ('Deploy') {
+      	stage ('Deploy') {
 	//def pid="ps -fe | grep tomcat"
   	//if (pid !=null)
   	//{
@@ -42,9 +42,9 @@ node {
 	//	sh "/root/tomcat2/bin/startup.sh"
 	
 	//}
-   // } 
-   // catch (err) {
-   //     currentBuild.result = 'FAILED'
-   //     throw err
-   // }
+    } 
+    catch (err) {
+        currentBuild.result = 'FAILED'
+        throw err
+    }
 }
