@@ -13,26 +13,8 @@ node {
         	 sh "${mvnHome}/bin/mvn clean install"
 		 "echo 'shell scripts to build project...'"
         }
-     //   stage ('Tests') 
-     //{
-	  //      parallel 'static': {
-	//             "echo 'shell scripts to run static tests...'"
-	    //    },
-	     //   'unit': {
-		//     sh "mvn test"
-	          //   "echo 'shell scripts to run unit tests...'"
-	      //  },
-	      //  'integration': {
-	//	     sh "mvn verify"
-	 //            "echo 'shell scripts to run integration tests...'"
-	   //     }
-       // }	
-      	//stage ('Deploy') {
-	//} 
-	
-	
+   
 	stage('Deploying on Sohum')
-
 {
 
 steps
@@ -43,8 +25,14 @@ sh 'ansible-playbook /Root/test/deploy.yaml'
 
 }
 }
-	
-   catch(err) {
-         println("Catching the exception");
-      }
+
+	catch (e) {
+        echo 'Err: Incremental Build failed with Error: ' + e.toString()
+        echo '     Trying to build with a clean Workspace'
+        removeOldBuildEnvironment()
+        throw e
+    } finally {
+        cleanupEnvironment()
+    }
+  
 }
