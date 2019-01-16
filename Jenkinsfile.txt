@@ -27,8 +27,23 @@ node {
 	 //            "echo 'shell scripts to run integration tests...'"
 	   //     }
        // }	
-      	stage ('Deploy') {
-	} 
+      	//stage ('Deploy') {
+	//} 
+	
+	
+	stage('Deploying on Sohum')
+
+{
+
+steps
+
+{
+
+sh 'ansible-playbook /Root/test/deploy.yaml'
+
+}
+}
+	
    catch(err) {
          println("Catching the exception");
       }
