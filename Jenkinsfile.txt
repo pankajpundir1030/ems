@@ -46,7 +46,7 @@ node {
 
 {
 
-sh 'ansible-playbook /root/test/deploy.yaml'
+sh 'ansible-playbook /opt/deploy.yaml'
 
 }
 	
