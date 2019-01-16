@@ -25,11 +25,4 @@ sh 'ansible-playbook /Root/test/deploy.yaml'
 
 }
 }
-
-
-  
- catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
-}
 }
