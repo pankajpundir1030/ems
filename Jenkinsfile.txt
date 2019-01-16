@@ -43,8 +43,8 @@ node {
 	
 	//}
    // } 
-    catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
-    }
+   // catch (err) {
+   //     currentBuild.result = 'FAILED'
+   //     throw err
+   // }
 }
